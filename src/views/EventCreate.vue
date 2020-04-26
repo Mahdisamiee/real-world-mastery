@@ -1,3 +1,7 @@
 <template>
-    <h1>create event</h1>
+  <h1>create event</h1>
 </template>
+
+<script>
+export default {}
+</script>
