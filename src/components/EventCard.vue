@@ -3,26 +3,15 @@
     <div class="event-card -shadow">
       <span class="eyebrow">@{{ event.time }} on {{ event.date }}</span>
       <h4 class="title">{{ event.title }}</h4>
-      <BaseIcon name="users"> {{ event.attendes.length }} attending </BaseIcon>
+      <BaseIcon name="users"> {{ event.attendees.length }} attending </BaseIcon>
     </div>
   </router-link>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      event: {
-        id: 1,
-        title: 'mahdi',
-        date: 'Tues march 6',
-        time: '6:00',
-        attendes: [
-          { id: 'abc1123', name: 'adma kir' },
-          { id: 'adef232', name: 'madhos  eke' }
-        ]
-      }
-    }
+  props: {
+    event: Object
   }
 }
 </script>
