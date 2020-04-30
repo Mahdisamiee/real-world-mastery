@@ -30,7 +30,7 @@
 <script>
 import EventService from '@/services/EventService.js'
 export default {
-  props: ['id', 'newprop'],
+  props: ['id'],
   data() {
     return {
       event: {}
