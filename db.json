@@ -44,6 +44,20 @@
       "date": "2019-02-02T23:27:00.000Z",
       "time": "1:00",
       "attendees": []
+    },
+    {
+      "id": 4058636,
+      "category": "sustainability",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam Jahr"
+      },
+      "title": "gff",
+      "description": "gfg",
+      "location": "gfgf",
+      "date": "2020-05-14T15:12:00.000Z",
+      "time": "18:00",
+      "attendees": []
     }
   ]
 }
