@@ -23,22 +23,40 @@ export default {
     }
   },
   actions: {
-    createEvent({ commit }, event) {
-      return EventService.postEvent(event).then(res => {
-        commit('Add_EVENT', res.data)
-      })
+    createEvent({ commit, dispatch }, event) {
+      return EventService.postEvent(event)
+        .then(res => {
+          commit('ADD_EVENT', res.data)
+          let notification = {
+            type: 'success',
+            message: 'your event created successfully!'
+          }
+          dispatch('notification/add', notification, { root: true })
+        })
+        .catch(err => {
+          let notification = {
+            type: 'error',
+            message: 'your event did not created successfully!' + err.message
+          }
+          dispatch('notification/add', notification, { root: true })
+          throw err
+        })
     },
-    fetchEvents({ commit }, { page, limit }) {
+    fetchEvents({ commit, dispatch }, { page, limit }) {
       EventService.getEvents(page, limit)
         .then(response => {
           commit('SET_EVENTS', response.data)
           commit('SET_EVENTS_TOTAL', parseInt(response.headers['x-total-count']))
         })
         .catch(err => {
-          console.log(err)
+          let notification = {
+            type: 'error',
+            message: 'there was a problem to fetching events!!! :' + err.message
+          }
+          dispatch('notification/add', notification, { root: true })
         })
     },
-    fetchEvent({ commit, getters }, id) {
+    fetchEvent({ commit, getters, dispatch }, id) {
       console.log('fetchevent happend')
       let event = getters.getEventById(id)
       if (event) {
@@ -49,7 +67,11 @@ export default {
             commit('SET_EVENT', response.data)
           })
           .catch(err => {
-            console.log(err.response)
+            let notification = {
+              type: 'error',
+              message: 'there was a problem to fetching event!!!! :' + err.message
+            }
+            dispatch('notification/add', notification, { root: true })
           })
       }
     }
