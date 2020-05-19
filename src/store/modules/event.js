@@ -1,6 +1,7 @@
 import EventService from '@/services/EventService'
 
 export default {
+  namespaced: true,
   state: {
     events: [],
     eventsTotal: 0,
@@ -24,7 +25,7 @@ export default {
   actions: {
     createEvent({ commit }, event) {
       return EventService.postEvent(event).then(res => {
-        commit('Add_Event', res.data)
+        commit('Add_EVENT', res.data)
       })
     },
     fetchEvents({ commit }, { page, limit }) {
@@ -37,8 +38,8 @@ export default {
           console.log(err)
         })
     },
-    fetchEvent({ commit, getters, rootState }, id) {
-      console.log(rootState.user.user.name)
+    fetchEvent({ commit, getters }, id) {
+      console.log('fetchevent happend')
       let event = getters.getEventById(id)
       if (event) {
         commit('SET_EVENT', event)
