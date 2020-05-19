@@ -19,6 +19,7 @@
 <script>
 import EventCard from '@/components/EventCard.vue'
 import { mapState } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   components: {
@@ -32,10 +33,10 @@ export default {
     ...mapState(['event', 'user'])
   },
   created() {
-    this.$store.dispatch('fetchEvents', {
-      page: this.page,
-      limit: 3
-    })
+    this.fetchEvents(this.page, 3)
+  },
+  methods: {
+    ...mapActions('event', ['fetchEvents'])
   }
 }
 </script>

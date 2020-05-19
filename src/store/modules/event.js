@@ -37,7 +37,8 @@ export default {
           console.log(err)
         })
     },
-    fetchEvent({ commit, getters }, id) {
+    fetchEvent({ commit, getters, rootState }, id) {
+      console.log(rootState.user.user.name)
       let event = getters.getEventById(id)
       if (event) {
         commit('SET_EVENT', event)
