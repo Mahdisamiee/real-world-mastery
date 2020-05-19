@@ -87,7 +87,7 @@ export default {
     },
     createFreshEventObject() {
       let id = Math.floor(Math.random() * 10000000)
-      let user = this.$store.state.user
+      let user = this.$store.state.user.user
 
       return {
         id: id,
